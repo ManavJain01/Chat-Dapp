@@ -82,13 +82,45 @@ export const ChatAppProvider = ({children}) => {
     try{
       if(name || accountAddress) return setError("PLease provide contract")
       
+      const contract = await connectingWithContract();
+      const addMyFriend = await contract.addFriend(accountAddress, name);
+      setLoading(true);
+      await addMyFriend.wait();
+      setLoading(false);
+      router.push('/');
+      window.location.reload();
     }catch(error){
       setError("Something went wrong while adding friends, try again")
     }
   }
 
+  //SEND MESSAGE TO YOUR FRIEND
+  const sendMessage = async({ msg, address })=>{
+    try{
+      if(msg || address) return setError("Please Type your Message");
+
+      const contract = await connectingWithContract();
+      const addMessage = await contract.sendMessage(address, msg);
+      setLoading(true);
+      await addMessage.wait();
+      setLoading(false);
+      window.location.reload();
+    }catch(error){
+      setError("Please reload and try again");
+    }
+  }
+
+  //READ INFO
+  const readUser = async(userAddress)=>{
+    const contract = await connectingWithContract();
+    const userName = await contract.getUsername(userAddress);
+    setCurrentUserName(userName);
+    setCurrentUserAddress(userAddress);
+  }
+
   return(
-    <ChatAppContext.Provider value={{ readMessage, createAccount }}>
+    <ChatAppContext.Provider value={{ readMessage, createAccount, addFriends, sendMessage, readUser,
+    account, userName, friendLists, friendMsg, userLists, loading, error, currentUserName, currentUserAddress }}>
       {children}
     </ChatAppContext.Provider>
   );
