@@ -8,7 +8,7 @@ import images from '@/assets'
 import { converTime } from '@/Utils/apiFeature'
 import { Loader } from '@/Components/index'
 
-const Chat = ({ functionName, readMessage, friendMsg, account, userName, loading, currentUserName, currentUserAddress }) => {
+const Chat = ({ functionName, readMessage, friendMsg, account, userName, loading, currentUserName, currentUserAddress, readUser }) => {
   //USESTATE
   const [message, setMessage] = useState("")
   const [chatData, setChatData] = useState({
@@ -22,6 +22,13 @@ const Chat = ({ functionName, readMessage, friendMsg, account, userName, loading
     if(!router.isReady) return
     setChatData(router.query);
   },[router.isReady])
+
+  useEffect(()=>{
+    if(chatData.address){
+      readMessage(router.query.address);
+      readUser(router.query.address);
+    }
+  },[])
 
   return (
     <div className={Style.Chat}>

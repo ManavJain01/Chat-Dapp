@@ -56,7 +56,7 @@ export const ChatAppProvider = ({children}) => {
       const read = await contract.readMessage(friendAddress);
       setFriendMsg(read);
     }catch(error){
-      setError("Currently You Have no Message")
+      console.log("Currently You Have no Message")
     }
   };
 
