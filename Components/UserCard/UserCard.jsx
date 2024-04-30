@@ -1,7 +1,8 @@
 import React from 'react'
 
 // INTERNAL IMPORT
-import STYLE from './UserCard.module.css'
+import Style from './Error.module.css'
+import images from '@/assets'
 
 const UserCard = () => {
   return (
