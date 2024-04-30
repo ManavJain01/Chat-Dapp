@@ -40,7 +40,8 @@ export const ChatAppProvider = ({children}) => {
       const userList = await contract.getAllAppUser();
       setUserLists(userList)
     }catch(error){
-      setError("Please Install And Connect Your Wallet");
+      // setError("Please Install And Connect Your Wallet");
+      console.log(error);
     }
   }
 
