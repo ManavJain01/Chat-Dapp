@@ -104,6 +104,10 @@ const NavBar = () => {
               </button>
             )}
           </div>
+
+          <div className={Style.NavBar_box_right_open} onClick={()=>setOpen(true)}>
+            <Image src={images.open} alt="open" width={30} height={30} />
+          </div>
         </div>
       </div>
     </div>
