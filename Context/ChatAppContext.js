@@ -40,7 +40,7 @@ export const ChatAppProvider = ({children}) => {
       const userList = await contract.getAllAppUser();
       setUserLists(userList)
     }catch(error){
-      setError("Please Install And Xonnect Your Wallet");
+      setError("Please Install And Connect Your Wallet");
     }
   }
 
@@ -62,8 +62,8 @@ export const ChatAppProvider = ({children}) => {
   //CREATE ACCOUNT
   const createAccount = async({ name, accountAddress })=>{
     try{
-      if(name || accountAddress)
-        return setError("Name and AccountAddress, cannot be empty")
+      // if(name || accountAddress)
+      //   return setError("Name and AccountAddress, cannot be empty")
 
       const contract = await connectingWithContract();
       const getCreatedUser = await contract.createAccount(name);
